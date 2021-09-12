@@ -1,0 +1,483 @@
+<html
+    lang="en"
+    class="w-full min-h-screen text-white bg-black"
+>
+    <head>
+        <meta charset="UTF-8">
+        <meta
+            http-equiv="X-UA-Compatible"
+            content="IE=edge"
+        >
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        >
+        <title>Document</title>
+        <!-- <link
+            rel="stylesheet"
+            href="/__/font/css2?family=Work+Sans:wght@100..900&amp;display=swap"
+        > -->
+        <script
+            defer
+            src="/scripts/tmi.min.js"
+        ></script>
+        <link
+            href="/styles/full-tw.css"
+            rel="stylesheet"
+        >
+        <style>
+            * {
+                font-family: 'work sans', sans-serif;
+            }
+
+        </style>
+    </head>
+
+    <body class="overflow-y-scroll">
+        <!-- scenes  -->
+        <style>
+            * {
+                scroll-snap-type: both proximity;
+            }
+
+            .scene {
+                aspect-ratio: 16/9;
+                scroll-snap-align: start;
+            }
+
+        </style>
+        <menu
+            id="scenes"
+            class="flex flex-col gap-20 p-0 m-0"
+            style="margin-bottom: 100vh;"
+        >
+            <article
+                id="welcome"
+                class="flex flex-col scene"
+            >
+                <main class="flex items-center p-12 text-white bg-black">
+                    <div class="gap-8 px-6 py-4 bg-blue-700 rounded rounded-2xl">
+                        <h1 class="text-5xl font-bold">Graph Datastructures in JS</h1>
+                        <p class="text-2xl font-bold">Graphing the Selectors and Elements</p>
+                    </div>
+                </main>
+            </article>
+            <article
+                id="brb"
+                class="flex flex-col scene"
+            >
+                <main class="flex items-center p-12 text-white bg-black">
+                    <div class="gap-8 px-6 py-4 bg-blue-700 rounded rounded-2xl">
+                        <h1 class="text-5xl font-bold">BRB</h1>
+                        <p class="text-2xl font-bold">I'll be back soon!</p>
+                    </div>
+                </main>
+            </article>
+            <article
+                id="chat_inset"
+                class="relative flex items-stretch overflow-hidden scene"
+            >
+                <main class="flex flex-col items-stretch flex-none text-white bg-green-500">
+                    <section
+                        class="relative flex-none max-h-full overflow-hidden resize-x group"
+                        id="capture_menu"
+                        style="
+                                --ar-w: 16;
+                                --ar-h: 9;
+                                aspect-ratio: var(--ar-w, 16) / var(--ar-h, 9);
+                                width: 80vw;
+                            "
+                    >
+                        <div class="absolute inset-0 -mb-4 -mr-4 overflow-scroll">
+                            <video
+                                id="video"
+                                autoplay=""
+                                class="absolute inset-0"
+                                resize
+                            ></video>
+                        </div>
+
+                        <div
+                            class="absolute inset-0 top-auto transition duration-1000 ease-out opacity-0 pointer-events-none h-1/3 bg-gradient-to-t group-hover:opacity-75 from-black">
+                        </div>
+                        <menu
+                            class="absolute bottom-0 flex items-end justify-end gap-4 py-4 transition duration-300 ease-out opacity-0 group-hover:opacity-100 right-4"
+                        >
+                            <input
+                                value="16/9"
+                                type="text"
+                                pattern="[0-9]+\/[0-9]+"
+                                size="5"
+                                onchange="
+                                    const ar = this.value.split('/');
+                                    [...'wh'].forEach((x,i) => capture_menu.style.setProperty(`--ar-${x}`, ar[i]));
+                                "
+                                class="relative px-4 py-2 text-sm tracking-widest text-center bg-blue-700 rounded-full leading-0 tabular-nums"
+                            >
+                            <button
+                                class="relative px-4 py-2 text-sm bg-blue-700 rounded-full leading-0"
+                                id="start"
+                            >Start Capture</button>
+                            <button
+                                class="relative px-4 py-2 text-sm bg-blue-700 rounded-full leading-0"
+                                id="stop"
+                            >Stop Capture</button>
+                        </menu>
+                    </section>
+                    <footer class="relative flex-auto overflow-hidden bg-gradient-to-t from-blue-900 to-blue-800">
+                        <ul class="absolute inset-0 flex gap-8 p-8 pb-12 overflow-scroll -right-4 -bottom-4">
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/html5.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="html5"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">html5</span>
+                            </li>
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/javascript.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="javascript"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">javascript</span>
+                            </li>
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/css3.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="css3"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">css3</span>
+                            </li>
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/mozillafirefox.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="mozillafirefox"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">firefox</span>
+                            </li>
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/tailwindcss.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="tailwindcss"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">tailwind</span>
+                            </li>
+                            <li
+                                class="relative flex flex-col items-center h-full gap-2"
+                                style="aspect-ratio: 1/1;"
+                            >
+                                <img
+                                    src="https://icongr.am/simple/visualstudiocode.svg?color=ffffff"
+                                    class="flex-auto object-contain"
+                                    alt="visualstudiocode"
+                                >
+                                <span
+                                    class="absolute text-sm text-center leading-wide -left-8 -right-8 -bottom-8">vscode</span>
+                            </li>
+                        </ul>
+                    </footer>
+                </main>
+                <aside class="flex-auto p-4 bg-blue-800">
+                    <h2>chat</h2>
+                    <ol
+                        id="chat_messages"
+                        class="flex flex-col-reverse gap-2"
+                    >
+                    </ol>
+                </aside>
+            </article>
+            <article
+                id="end_stream"
+                class="relative flex items-end scene"
+            >
+                <main class="relative z-20 flex flex-col gap-3 p-16 text-white">
+                    <h1 class="font-bold text-7xl">END OF STREAM</h1>
+                    <p class="text-5xl font-medium">Thanks for watching!</p>
+                </main>
+                <div class="absolute inset-0 overflow-hidden">
+                    <div
+                        class="absolute inset-0 overflow-hidden transition-all duration-1000 ease-out origin-bottom-left transform scale-150 hover:scale-100 ">
+                        <div
+                            class="absolute inset-0 overflow-hidden transition-all duration-1000 ease-out origin-bottom-left transform scale-150 hover:scale-100 ">
+                            <div
+                                class="absolute inset-0 transition-all duration-1000 ease-out origin-bottom-left transform scale-150 bg-gradient-to-tr hover:scale-100 from-blue-900 to-green-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </menu>
+        <!-- HUD -->
+        <aside
+            id="hud"
+            class="fixed inset-0 flex flex-col pointer-events-none"
+        >
+            <main
+                id="hud_frame"
+                class="flex-none transition-all ease-out border-4 border-blue-900 scene"
+            >
+
+            </main>
+            <div class="flex flex-shrink-1">
+                <menu
+                    class="flex gap-1 p-0 m-4 overflow-hidden text-xl font-bold tracking-wider text-blue-700 transition-all ease-out bg-blue-700 rounded pointer-events-auto ring-current ring"
+                >
+                    <button
+                        for=""
+                        type="button"
+                        onclick="hud_frame.classList.toggle('border-4')"
+                        class="px-6 py-2 font-bold bg-black hover:bg-blue-700 target:bg-blue-700 hover:text-black target:text-black"
+                    >
+                        outline
+                    </button>
+                    <nav
+                        id="hud_nav"
+                        class="flex gap-1"
+                    ></nav>
+                </menu>
+            </div>
+        </aside>
+        <script utils>
+            window._ = {
+                QSA: (s, x) => x.querySelectorAll(s),
+                log: (x) => (console.log(x), x),
+                loop: (fn) => (xs, c) => {
+                    let o = (!c && xs) || (c.filter || c.map ? [] : c.reduce);
+                    let runItem =
+                        (!c && ((i) => fn(xs[i]))) ||
+                        ((c.map || c.filter) && ((i) => fn(xs[i]))) ||
+                        ((i) => fn(c.reduce, xs[i]));
+                    let updateOutput =
+                        (!c && ((fo) => fo)) ||
+                        (c.filter && ((fo) => fo && o.push(fo))) ||
+                        (c.map && ((fo) => o.push(fo))) ||
+                        (c.reduce && ((fo) => (o = fo)));
+
+                    for (let i = 0, len = xs.length; i < len; i++) {
+                        updateOutput(runItem(i));
+                    }
+                    return !c ? xs : o;
+                },
+                upsertMap: (map) => (value = {}) => (key) => {
+                    const x = map.get(key);
+                    !!x ? Object.assign(x, value) : map.set(key, value);
+                    return map;
+                },
+                oncePerFrame: (fn) => {
+                    let queued;
+                    return function (...args) {
+                        if (queued) cancelAnimationFrame(queued);
+                        queued = requestAnimationFrame(fn.bind(fn, ...args));
+                    };
+                },
+                oncePerIdle: (fn) => {
+                    let queued;
+                    return function (...args) {
+                        if (queued) cancelIdleCallback(queued);
+                        queued = requestIdleCallback(fn.bind(fn, ...args));
+                    };
+                },
+                once: (fn) => (...args) => {
+                    let ran = false;
+                    let cache;
+                    return (...args) => {
+                        if (ran) return cache;
+                        cache = fn.bind(fn, ...args)();
+                        ran = true;
+                        return cache;
+                    };
+                },
+                asEl: (node) => (node.tagName ? node : node.parentElement)
+            };
+        </script>
+        <script setup>
+            const { loop, QSR } = _;
+            const reduceHudNav = (a, x) => a + `
+                <a 
+                    href="#${x.id}"
+                    class="px-6 py-2 bg-black hover:bg-blue-700 target:bg-blue-700 hover:text-black target:text-black"
+                >
+                    ${x.name || x.id}
+                </a>`;
+            hud_nav.innerHTML = [...scenes.children].reduce(reduceHudNav, "");
+        </script>
+        <script type="module">
+            // Define configuration options
+            const opts = {
+                // identity: {
+                //     username: "<BOT_USERNAME>",
+                //     password: "<OAUTH_TOKEN>"
+                // },
+                channels: ["jackhp95"]
+            };
+
+            // Create a client with our options
+            const client = new tmi.client(opts);
+
+            // Register our event handlers (defined below)
+            client.on('message', onMessageHandler);
+            client.on('connected', onConnectedHandler);
+
+            // Connect to Twitch:
+            client.connect();
+
+            const addMessage = (...args) => {
+                const [target, context, msg, self, ...rest] = args;
+                chat_messages.insertAdjacentHTML("afterbegin", `
+                <li class="flex flex-col fade-in-right">
+                    <span class="text-xs border-b border-blue-700 opacity-50">${target}</span>
+                    <span>${msg}</span>
+                </li>  
+                `)
+            }
+            // Called every time a message comes in
+            function onMessageHandler(...args) {
+                const [target, context, msg, self, ...rest] = args;
+                if (self) { return; } // Ignore messages from the bot
+
+                // Remove whitespace from chat message
+                const commandName = msg.trim();
+
+
+                console.log({ target, context, msg, self });
+
+                addMessage(...args);
+
+                // If the command is known, let's execute it
+                if (commandName === '!dice') {
+                    const num = rollDice();
+                    client.say(target, `You rolled a ${num}`);
+                    console.log(`* Executed ${commandName} command`);
+                } else {
+                    console.log(`* Unknown command ${commandName}`);
+                }
+            }
+
+            // Function called when the "dice" command is issued
+            function rollDice() {
+                const sides = 6;
+                return Math.floor(Math.random() * sides) + 1;
+            }
+
+            // Called every time the bot connects to Twitch chat
+            function onConnectedHandler(addr, port) {
+                console.log(`* Connected to ${addr}:${port}`);
+            }
+        </script>
+        <script id="screen_capture_script">
+
+            const videoElem = document.getElementById("video");
+            // const logElem = document.getElementById("log");
+            const startElem = document.getElementById("start");
+            const stopElem = document.getElementById("stop");
+
+            // Options for getDisplayMedia()
+
+            var displayMediaOptions = {
+                video: {
+                    cursor: "always"
+                },
+                audio: false
+            };
+
+            // Set event listeners for the start and stop buttons
+            startElem.addEventListener("click", function (evt) {
+                startCapture();
+            }, false);
+
+            stopElem.addEventListener("click", function (evt) {
+                stopCapture();
+            }, false);
+            // console.log = msg => logElem.innerHTML += `${msg}<br>`;
+            // console.error = msg => logElem.innerHTML += `<span class="error">${msg}</span><br>`;
+            // console.warn = msg => logElem.innerHTML += `<span class="warn">${msg}<span><br>`;
+            // console.info = msg => logElem.innerHTML += `<span class="info">${msg}</span><br>`;
+            async function startCapture() {
+                // logElem.innerHTML = "";
+
+                try {
+                    videoElem.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+                    dumpOptionsInfo();
+                } catch (err) {
+                    console.error("Error: " + err);
+                }
+            }
+            function stopCapture(evt) {
+                let tracks = videoElem.srcObject.getTracks();
+
+                tracks.forEach(track => track.stop());
+                videoElem.srcObject = null;
+            }
+            function dumpOptionsInfo() {
+                const videoTrack = videoElem.srcObject.getVideoTracks()[0];
+
+                console.info("Track settings:");
+                console.info(JSON.stringify(videoTrack.getSettings(), null, 2));
+                console.info("Track constraints:");
+                console.info(JSON.stringify(videoTrack.getConstraints(), null, 2));
+            }
+
+        </script>
+        <style id="animation_styles">
+            /* Fade in Right */
+            .fade-in-right {
+                animation: fade-in-right 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            }
+
+            @keyframes fade-in-right {
+                0% {
+                    transform: translateX(50px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            /* Fade in Bottom  */
+            .fade-in-bottom {
+                animation: fade-in-bottom 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            }
+
+            @keyframes fade-in-bottom {
+                0% {
+                    transform: translateY(50px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+        </style>
+    </body>
+
+</html>
