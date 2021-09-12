@@ -2,6 +2,7 @@
     lang="en"
     class="w-full min-h-screen text-white bg-black"
 >
+
     <head>
         <meta charset="UTF-8">
         <meta
@@ -57,8 +58,14 @@
             >
                 <main class="flex items-center p-12 text-white bg-black">
                     <div class="gap-8 px-6 py-4 bg-blue-700 rounded rounded-2xl">
-                        <h1 class="text-5xl font-bold">Graph Datastructures in JS</h1>
-                        <p class="text-2xl font-bold">Graphing the Selectors and Elements</p>
+                        <h1
+                            contenteditable="true"
+                            class="text-5xl font-bold"
+                        >Graph Datastructures in JS</h1>
+                        <p
+                            contenteditable="true"
+                            class="text-2xl font-bold"
+                        >Graphing the Selectors and Elements</p>
                     </div>
                 </main>
             </article>
@@ -68,8 +75,14 @@
             >
                 <main class="flex items-center p-12 text-white bg-black">
                     <div class="gap-8 px-6 py-4 bg-blue-700 rounded rounded-2xl">
-                        <h1 class="text-5xl font-bold">BRB</h1>
-                        <p class="text-2xl font-bold">I'll be back soon!</p>
+                        <h1
+                            contenteditable="true"
+                            class="text-5xl font-bold"
+                        >BRB</h1>
+                        <p
+                            contenteditable="true"
+                            class="text-2xl font-bold"
+                        >I'll be back soon!</p>
                     </div>
                 </main>
             </article>
@@ -216,7 +229,10 @@
             >
                 <main class="relative z-20 flex flex-col gap-3 p-16 text-white">
                     <h1 class="font-bold text-7xl">END OF STREAM</h1>
-                    <p class="text-5xl font-medium">Thanks for watching!</p>
+                    <p
+                        contenteditable="true"
+                        class="text-5xl font-medium"
+                    >Thanks for watching!</p>
                 </main>
                 <div class="absolute inset-0 overflow-hidden">
                     <div
@@ -349,7 +365,7 @@
                 const [target, context, msg, self, ...rest] = args;
                 chat_messages.insertAdjacentHTML("afterbegin", `
                 <li class="flex flex-col fade-in-right">
-                    <span class="text-xs border-b border-blue-700 opacity-50">${target}</span>
+                    <span contenteditable="true" class="text-xs border-b border-blue-700 opacity-50">${target}</span>
                     <span>${msg}</span>
                 </li>  
                 `)
